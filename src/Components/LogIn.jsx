@@ -21,7 +21,6 @@ function LoginForm() {
         console.log(response.data);
         localStorage.setItem("techDToken", response.data.token);
         alert("Login successfull");
-        window.location.href = "./table";
       })
       .catch((error) => {
         console.error("Error:", error);

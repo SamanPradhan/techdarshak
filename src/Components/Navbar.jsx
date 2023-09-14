@@ -7,7 +7,6 @@ function Navbar() {
   const logoutToken = () => {
     localStorage.removeItem("techDToken");
     alert("Logout Sucessfull");
-    window.location.reload();
   };
 
   useEffect(() => {
@@ -19,9 +18,6 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <Link className="navbar-brand" to="/">
-          Your App Name
-        </Link>
         <button
           className="navbar-toggler"
           type="button"

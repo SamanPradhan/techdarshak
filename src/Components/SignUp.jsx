@@ -33,7 +33,7 @@ function SignupForm() {
       setPassword("");
       setConfirmPassword("");
       alert("signup success");
-      window.location.href = "./login";
+    
     } catch (error) {
       console.error("Signup error:", error);
       alert("signup failed");
