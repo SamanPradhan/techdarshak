@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import { Link, useNavigate } from "react-router-dom";
 function SignupForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,7 +35,8 @@ function SignupForm() {
       setPassword("");
       setConfirmPassword("");
       alert("signup success");
-    
+      navigate("/login");
+      window.location.reload();
     } catch (error) {
       console.error("Signup error:", error);
       alert("signup failed");

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [token, setToken] = useState(""); // Initialize token state with an empty string
 
   const logoutToken = () => {
     localStorage.removeItem("techDToken");
     alert("Logout Sucessfull");
+    navigate("/login");
+    window.location.reload();
   };
 
   useEffect(() => {

@@ -1,7 +1,10 @@
 // In LoginForm.js
 import React, { useState } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 function LoginForm() {
+  const navigate = useNavigate();
   const [loginInputEmail1, setLoginInputEmail1] = useState("");
   const [loginInputPassword1, setLoginInputPassword1] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
@@ -21,6 +24,8 @@ function LoginForm() {
         console.log(response.data);
         localStorage.setItem("techDToken", response.data.token);
         alert("Login successfull");
+        navigate("/table");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
