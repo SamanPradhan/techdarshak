@@ -1,36 +1,58 @@
-// SignupForm.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 
 function SignupForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
     // Check if passwords match
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
 
-    // Your signup logic here, e.g., make an API request to register the user
+    const userData = {
+      email,
+      password,
+    };
+    console.log(userData);
 
-    // Reset the form fields
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+    try {
+      const response = await axios.post(
+        "https://tech-darshak.onrender.com/users/signup",
+        userData
+      );
+
+      console.log(response.data);
+
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      alert("signup success");
+      window.location.href = "./login";
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("signup failed");
+    }
   };
 
   return (
     <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
+      <form
+        style={{
+          margin: "3rem 30rem",
+          padding: "1rem",
+          border: "2px solid grey",
+          borderRadius: "10px",
+        }}
+        onSubmit={handleSignup}
+      >
+        <h2>Sign Up</h2>
         <div className="mb-3">
-          <label htmlFor="signupInputEmail1" className="form-label">
-            Email address
-          </label>
           <input
             type="email"
             className="form-control"
@@ -42,9 +64,6 @@ function SignupForm() {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="signupInputPassword1" className="form-label">
-            Password
-          </label>
           <input
             type="password"
             className="form-control"
@@ -55,9 +74,6 @@ function SignupForm() {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="signupInputPassword2" className="form-label">
-            Confirm Password
-          </label>
           <input
             type="password"
             className="form-control"

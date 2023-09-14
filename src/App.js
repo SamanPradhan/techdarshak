@@ -1,26 +1,31 @@
 // Import necessary modules
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import your components
-import Navbar from "./Navbar";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
-
+import Navbar from "./Components/Navbar";
+import LoginForm from "./Components/LogIn";
+import SignupForm from "./Components/SignUp";
+import Table from "./Components/Table";
+import ProtectedRoute from "./Components/ProtectedRoute";
 function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Posts Table with Pagination</h1>
-        {/* Add your Navbar component here */}
+        <Navbar />
+        <Routes>
+          {/* Route for login */}
+          <Route path="/login" element={<LoginForm />} />
 
-        {/* Route for login */}
-        <Route path="/login" component={LoginForm} />
+          {/* Route for signup */}
+          <Route path="/signup" element={<SignupForm />} />
 
-        {/* Route for signup */}
-        <Route path="/signup" component={SignupForm} />
-
-        {/* Add other routes as needed */}
+          <Route
+            exact
+            path="/table"
+            element={<ProtectedRoute Component={Table} />}
+          />
+        </Routes>
       </div>
     </Router>
   );
