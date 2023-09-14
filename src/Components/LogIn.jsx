@@ -1,48 +1,26 @@
-// // SignIn.js
-// import React, { useState } from "react";
-// import { Form, Button } from "react-bootstrap";
-// import { auth } from "./Firebase";
+// In LoginForm.js
+import React, { useState } from "react";
 
-// function SignIn() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
+function LoginForm() {
+  const [loginInputEmail1, setLoginInputEmail1] = useState("");
+  const [loginInputPassword1, setLoginInputPassword1] = useState("");
 
-//   const handleSignIn = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await auth.signInWithEmailAndPassword(email, password);
-//     } catch (error) {
-//       console.error("Error signing in:", error);
-//     }
-//   };
+  const handleLoginFormSubmit = async (e) => {
+    e.preventDefault();
 
-//   return (
-//     <Form>
-//       <Form.Group controlId="email">
-//         <Form.Label>Email address</Form.Label>
-//         <Form.Control
-//           type="email"
-//           placeholder="Enter email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//         />
-//       </Form.Group>
+    const data = {
+      email: loginInputEmail1,
+      password: loginInputPassword1,
+    };
 
-//       <Form.Group controlId="password">
-//         <Form.Label>Password</Form.Label>
-//         <Form.Control
-//           type="password"
-//           placeholder="Password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
-//       </Form.Group>
+    // Your fetch logic here...
+  };
 
-//       <Button variant="primary" type="submit" onClick={handleSignIn}>
-//         Sign In
-//       </Button>
-//     </Form>
-//   );
-// }
+  return (
+    <form onSubmit={handleLoginFormSubmit}>
+      {/* Your input fields and submit button */}
+    </form>
+  );
+}
 
-// export default SignIn;
+export default LoginForm;

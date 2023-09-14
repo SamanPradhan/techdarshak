@@ -1,26 +1,28 @@
-// App.js
-import React, { useEffect, useState } from "react";
-// import Firebase from "./Components/Firebase"; // Import your Firebase component
-import PostsTable from "./Components/Table";
+// Import necessary modules
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+// Import your components
+import Navbar from "./Navbar";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
+
 function App() {
-  const [user, setUser] = useState(null);
-  // const firebase = new Firebase();
-
-  // useEffect(() => {
-  //   // Listen for changes in authentication state
-  //   firebase.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       setUser(authUser);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-  // }, []);
-
   return (
-    <div>
-      <PostsTable />
-    </div>
+    <Router>
+      <div className="App">
+        <h1>Posts Table with Pagination</h1>
+        {/* Add your Navbar component here */}
+
+        {/* Route for login */}
+        <Route path="/login" component={LoginForm} />
+
+        {/* Route for signup */}
+        <Route path="/signup" component={SignupForm} />
+
+        {/* Add other routes as needed */}
+      </div>
+    </Router>
   );
 }
 

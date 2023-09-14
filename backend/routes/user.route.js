@@ -33,7 +33,7 @@ userRouter.post("/login", async (req, res) => {
       if (err) {
         return res.status(400).send({ Error: err.message });
       }
-      const token = jwt.sign({ userId: findUser._id }, process.env.secret, {
+      const token = jwt.sign({ userId: findUser._id }, process.env.secretJWT, {
         expiresIn: "1w",
       });
 

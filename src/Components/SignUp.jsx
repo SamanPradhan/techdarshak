@@ -1,48 +1,78 @@
-// // SignUp.js
-// import React, { useState } from "react";
-// import { Form, Button } from "react-bootstrap";
-// import { auth } from "./Firebase";
+// SignupForm.js
+import React, { useState } from 'react';
 
-// function SignUp() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
+function SignupForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-//   const handleSignUp = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await auth.createUserWithEmailAndPassword(email, password);
-//     } catch (error) {
-//       console.error("Error signing up:", error);
-//     }
-//   };
+  const handleSignup = async (e) => {
+    e.preventDefault();
 
-//   return (
-//     <Form>
-//       <Form.Group controlId="email">
-//         <Form.Label>Email address</Form.Label>
-//         <Form.Control
-//           type="email"
-//           placeholder="Enter email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//         />
-//       </Form.Group>
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
 
-//       <Form.Group controlId="password">
-//         <Form.Label>Password</Form.Label>
-//         <Form.Control
-//           type="password"
-//           placeholder="Password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
-//       </Form.Group>
+    // Your signup logic here, e.g., make an API request to register the user
 
-//       <Button variant="success" type="submit" onClick={handleSignUp}>
-//         Sign Up
-//       </Button>
-//     </Form>
-//   );
-// }
+    // Reset the form fields
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
 
-// export default SignUp;
+  return (
+    <div>
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSignup}>
+        <div className="mb-3">
+          <label htmlFor="signupInputEmail1" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="signupInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="signupInputPassword1" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="signupInputPassword1"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="signupInputPassword2" className="form-label">
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="signupInputPassword2"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Sign Up
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default SignupForm;
